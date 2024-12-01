@@ -1,0 +1,219 @@
+---
+import { languages } from "i18n/ui";
+import { Picture } from "astro:assets";
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+import Link from "@components/ui/link.astro";
+import Bot from "assets/BOT.png";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+
+const imageUrl =
+  lang === "en"
+    ? "https://res.cloudinary.com/dm6kc0kyr/image/upload/v1725987254/INGLES_1_pacugc.gif"
+    : "https://res.cloudinary.com/dm6kc0kyr/image/upload/v1725916349/12348609-6f5d-4e19-aff0-550931dd8802_psxdmz.gif";
+
+const otherLang = Object.keys(languages).find((l) => l !== lang);
+
+function getOtherLangUrl(currentUrl, currentLang, otherLang) {
+  if (currentLang === "en") {
+    return `/${otherLang}${currentUrl}`;
+  } else {
+    return currentUrl.replace(
+      `/${currentLang}`,
+      otherLang === "en" ? "" : `/${otherLang}`,
+    );
+  }
+}
+
+const otherLangUrl = getOtherLangUrl(Astro.url.pathname, lang, otherLang);
+---
+
+<div class="fixed bottom-0 right-0 lg:right-[0.3vw] z-50 flex justify-end w-20">
+  <a href="#" id="open-modal" class="w-18 h-20">
+    <img
+      src='https://res.cloudinary.com/dsfgyzics/image/upload/v1729029730/GIF_1_zk0ys1.gif'
+      alt="Descripción de la imagen"
+      class="w-full h-full object-contain max-w-full max-h-full"
+    />
+  </a>
+</div>
+
+<!-- Barra animada -->
+<div
+  id="animation-bar"
+  class="bg-[#0E1B4D] absolute bottom-0 right-0 w-2 h-0 transition-all duration-700">
+</div>
+
+<div
+  id="small-popup"
+  class="small-popup hidden fixed bottom-[70px] right-0 w-auto bg-[#0E1B4D] text-white p-4 rounded-tl-3xl rounded-bl-3xl flex items-center space-x-4 z-50">
+  <p>{t('virtual2.mobile')}</p>
+  <button
+    id="close-small-popup"
+    class="text-white font-bold hover:text-gray-300">×</button
+  >
+</div>
+
+<!-- Modal -->
+<div
+  id="modal-6"
+  class="modal bg-[#0E1B4D] bg-opacity-85 w-[250px] overflow md:w-[200px] lg:w-[360px] lg:h-auto rounded-tl-3xl rounded-bl-3xl p-2 md:p-6 text-white flex flex-col items-center justify-center relative opacity-0 translate-x-full transition-all duration-700 z-50">
+  <button
+    id="close-modal"
+    class="absolute top-3 right-4 text-white rounded-full text-4xl hover:bg-gray-600">
+    ×
+  </button>
+  <h1 class="text-xl font-[500] mb-8 text-start w-full">QQ Robot AI</h1>
+  <div class="flex flex-col items-center text-center">
+    <img
+      src="https://res.cloudinary.com/dsfgyzics/image/upload/v1728361475/BOT_iag8js.png"
+      alt="Bot"
+      class="w-64 h-64 object-contain rounded-full"
+    />
+    <p class="text-xl mb-8">{t('virtual2.title')}</p>
+    <p class="text-[12px] mb-8">
+        {t('virtual2.subtitle')}
+    </p>
+    <a
+      href="https://chat-ia-fund.vercel.app/"
+      target="_blank"
+      class="text-[12px] px-4 py-1 border-none what bg-white rounded-3xl whitespace-nowrap"
+      >{t('virtual2.button')}</a
+    >
+  </div>
+</div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+
+  .font-500-stroke {
+    font-weight: 500;
+    -webkit-text-stroke: 0.3px #111c50;
+  }
+
+  .what {
+    color: #111c50;
+  }
+
+  html {
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .modal {
+    position: fixed;
+    right: 0;
+    bottom: 5%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(
+      100%
+    ); 
+    transition:
+      transform 0.5s ease-out,
+      opacity 0.5s ease-out,
+      visibility 0s 0.5s;
+  }
+
+  .modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    transition:
+      transform 0.5s ease-out,
+      opacity 0.5s ease-out,
+      visibility 0s;
+  }
+
+  #modal-6 {
+    right: 0;
+    bottom: 5%;
+  }
+
+  #animation-bar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    transition: height 0.7s ease;
+  }
+
+  .small-popup {
+    display: none;
+    background-color: #0E1B4D;
+    padding: 10px 20px;
+    border-radius: 15px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    .small-popup {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+    const openModal = document.getElementById("open-modal");
+    const closeModal = document.getElementById("close-modal");
+    const animationBar = document.getElementById("animation-bar");
+    const modal6 = document.getElementById("modal-6");
+    const smallPopup = document.getElementById("small-popup");
+    const closeSmallPopup = document.getElementById("close-small-popup");
+  
+    // Función para abrir el modal con animación
+    function openModalWithAnimation() {
+      if (animationBar) {
+        if (window.innerWidth >= 1024) {
+          animationBar.style.height = "579px";
+        } else {
+          animationBar.style.height = "558px";
+        }
+      }
+  
+      setTimeout(() => {
+        if (modal6) {
+          modal6.classList.add("active");
+        }
+      }, 700);
+    }
+  
+    // Mostrar popup automáticamente después de 3 segundos
+    window.onload = function () {
+      setTimeout(() => {
+        // Mostrar mensaje pequeño en pantallas pequeñas
+        if (window.innerWidth <= 768) {
+          if (smallPopup) {
+            smallPopup.style.display = 'flex';
+          }
+        } else {
+          openModalWithAnimation();
+        }
+      }, 3000);
+    };
+  
+    openModal?.addEventListener("click", function (event) {
+      event.preventDefault();
+      if (smallPopup) {
+        smallPopup.style.display = 'none';
+      }
+      openModalWithAnimation();
+    });
+  
+    // Cerrar el modal pequeño
+    closeSmallPopup?.addEventListener("click", function () {
+      if(smallPopup) {
+        smallPopup.style.display = 'none';
+      }
+    });
+  
+    // Cerrar el modal y reiniciar la animación de la barra
+    closeModal?.addEventListener("click", function () {
+      modal6?.classList.remove("active");
+  
+      setTimeout(() => {
+        if (animationBar) {
+          animationBar.style.height = "0";
+        }
+      }, 700);
+    });
+  </script>

@@ -1,0 +1,47 @@
+---
+import bg from 'assets/bg.png';
+---
+
+<main class="main_banner rounded relative w-full"></main>
+
+<style>
+  .main_banner {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 200vh;
+    background-image: url('src/assets/flyer.jpg')
+  }
+
+  @media (max-width: 1100px) {
+    .main_banner {
+      background-image: url('src/assets/flyer.jpg');
+      background-size: cover;
+      height: 100vh;
+    }
+  }
+
+  @media (max-width: 690px) {
+    .main_banner {
+      background-image: url('src/assets/flyer.jpg');
+      background-size: cover;
+      height: 100vh;
+    }
+  }
+
+  @media (max-width: 585px) {
+    .main_banner {
+      background-image: url('src/assets/flyer.jpg');
+      background-size: cover;
+      height: 60vh;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .main_banner {
+      background-image: url('src/assets/flyer.jpg');
+      background-size: cover;
+      height: 50vh;
+    }
+  }
+</style>

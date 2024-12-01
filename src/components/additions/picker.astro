@@ -1,0 +1,58 @@
+---
+import { languages } from 'i18n/ui';
+import { getLangFromUrl } from 'i18n/utils';
+
+const currentLang = getLangFromUrl(Astro.url);
+const otherLang = Object.keys(languages).find(lang => lang !== currentLang);
+
+function getOtherLangUrl(currentUrl, currentLang, otherLang) {
+  if (currentLang === 'en') {
+    let newUrl = `/${otherLang}${currentUrl}`;
+
+    console.log('currentUrl', currentUrl);
+    if (currentUrl.includes('/blog') && !currentUrl.match(/\/blog\/$/)) {
+      console.log('entra', currentUrl);
+      newUrl = newUrl.replace('/blog/', '/blog/es-');
+    }
+
+    return newUrl;
+  } else {
+    let newUrl = currentUrl.replace(`/${currentLang}`, otherLang === 'en' ? '' : `/${otherLang}`);
+
+    if (currentUrl.includes('/blog/')) {
+      newUrl = newUrl.replace('/es-', '/');
+    }
+
+    return newUrl;
+  }
+}
+
+const otherLangUrl = getOtherLangUrl(Astro.url.pathname, currentLang, otherLang);
+---
+
+<style>
+  .flag-icon {
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    display: inline-block;
+  }
+  .flag-icon.en {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/United-states_flag_icon_round.svg/1200px-United-states_flag_icon_round.svg.png');
+  }
+  .flag-icon.es {
+    background-image: url('https://cdn.countryflags.com/thumbs/spain/flag-round-250.png');
+  }
+  .floating-button {
+    box-shadow: 2px 8px 10px -1px rgb(0, 0, 0);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+</style>
+
+<div class="fixed bottom-0 p-2 bg-white floating-button flex rounded-t-3xl z-50">
+  {otherLang ? (
+    <a href={otherLangUrl}>
+      <div class={`flag-icon ${otherLang}`}></div>
+    </a>
+  ) : null}
+</div>

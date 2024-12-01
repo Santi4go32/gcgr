@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+
+<div
+  class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-[#0b1c52] h-auto flex items-center justify-center md:flex">
+  <div class="relative flex w-full lg:max-w-screen-xl h-full text-white px-5">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 md:mt-0 md:gap-0 lg:w-full flex flex-col lg:flex-row py-20">
+      <div class="flex flex-col md:col-span-1 w-full xl:w-[600px] max-w-[500px]">
+        <p class="text-[#0180fb] font-medium fade-up">{t("lets")}</p>
+        <h1 class="mt-3 text-3xl md:text-4xl font-medium tracking-tight fade-up">
+          {t("se.features")}
+        </h1>
+        <p class="mt-5 text-xl fade-up">{t("port.minimum")}: {t("port2.price1")}</p>
+        <p class="mt-5 text-xl fade-up">{t("se.mincapital")}</p>
+        <p class="mt-5 text-xl fade-up">{t("se.feat")}</p>
+        <p class="mt-5 text-xl fade-up">{t("se.feat2")}</p>
+      </div>
+      <div class="relative h-full md:col-span-2 md:ml-[100px] fade-up">
+        <video class="opacity-[0.98] h-full" autoplay loop playsinline controlslist="nodownload" preload="auto" poster="https://qqcapitalfund.com/wp-content/uploads/2024/01/tabla-serenity-poster.jpg">
+            <source src="https://qqcapitalfund.com/wp-content/uploads/2024/01/tabla-serenity.mp4#t=1,150" type="video/mp4">
+            <source src="https://qqcapitalfund.com/wp-content/uploads/2024/01/tabla-serenity.webm#t=1,150" type="video/webm">
+            <source src="https://qqcapitalfund.com/wp-content/uploads/2024/01/tabla-serenity.ogg#t=1,150" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+</div>

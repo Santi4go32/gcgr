@@ -1,0 +1,432 @@
+---
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+import Navbar from "components/navbar/navbar.astro";
+import GrTable from "components/portfolios/main-port/tables/gr-table.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+
+<!-- <div id="serenity" class="hidden" style="position: relative; top: -100px; visibility: hidden; margin-top: 10%"></div> -->
+<main
+  id="grow"
+  class="main_banner lg:h-[100vh] w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-full flex items-center justify-center mb-[5%]">
+  <!-- Contenedor principal con fondo transparente -->
+  <div class="flex justify-center over z-10 relative">
+    <div class="mw flex w-full max-w-screen-xl px-4 py-2">
+      <div class="bg-[#0E1B4D] bg-opacity-50 p-2 xl:p-6 rounded-2xl">
+        <div class="pad grid grid-cols-1 lg:grid-cols-3 gap-4 text-white">
+          <!-- Features Card -->
+          <div class="bg-[#0E1B4D] rounded-3xl flex flex-col">
+            <div class="py-6 px-4 flex flex-col items-center text-center">
+              <h2 class="ti text-4xl font-semibold fade-up">
+                {t("se.features")}
+              </h2>
+              <p class="mt-6 fade-up">
+                {t("port.minimum")}: {t("port2.price3")}
+              </p>
+              <p class="mt-10 fade-up">
+                {t("clauses")}
+              </p>
+              <p class="mt-10 fade-up">
+                {t("cl.feat1")}
+              </p>
+            </div>
+            <div
+              class="mt-6 w-full mx-auto flex pb-3 justify-center items-center fade-up">
+              <video
+                class="opacity-[0.98] w-[98%]"
+                autoplay
+                loop
+                playsinline
+                controlslist="nodownload"
+                preload="auto"
+                poster="https://qqcapitalfund.com/wp-content/uploads/2024/01/tabla-serenity-poster.jpg">
+                <source
+                  src="https://qqcapitalfund.com/wp-content/uploads/2024/01/tabla-grow.mp4#t=1,150"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <!-- Diversification Card -->
+          <div
+            id="gr-diversification-card"
+            class="cursor-pointer bg-white py-6 px-4 text-[#0E1B4D] rounded-3xl flex flex-col items-center text-center h-auto rotate-card">
+            <div class="card-content relative z-10">
+              <h2 class="ti text-4xl font-semibold">
+                {t("se.diversification")}
+              </h2>
+              <p class="mt-6 fade-up">
+                {t("se.diversification1")}
+              </p>
+              <p class="mt-3 fade-up">
+                {t("gr.diversification2")}
+              </p>
+              <p class="mt-3 relative z-10 fade-up">
+                {t("gr.diversification3")}
+              </p>
+              <div
+                class="flex flex-col justify-center w-auto h-auto items-center mt-[-25px]">
+                <video
+                  class="max opacity-[0.98] max-w-[200px] h-auto"
+                  autoplay
+                  loop
+                  playsinline
+                  controlslist="nodownload"
+                  preload="auto"
+                  poster="https://qqcapitalfund.com/wp-content/uploads/2024/01/Grow-Torta-poster.jpg">
+                  <source
+                    src="https://qqcapitalfund.com/wp-content/uploads/2024/01/WhatsApp-Video-2024-01-23-at-11.58.10-AM-1.mp4"
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+                <div
+                  class="tos flex flex-row md:space-x-2 justify-between text-start mt-[-30px] z-10 text-[10px] font-semibold fade-up w-full">
+                  <p class="whitespace-pre-line">{t("gr.stocks")}</p>
+                  <p class="whitespace-pre-line text-[#26b5d8]">
+                    {t("gr.currency")}
+                  </p>
+                  <p class="whitespace-pre-line text-[#1a5e83]">
+                    {t("gr.bonus")}
+                  </p>
+                  <p class="whitespace-pre-line text-[#032794]">
+                    {t("gr.gold")}
+                  </p>
+                </div>
+                <div
+                  class="tos mt-6 text-[12px] flex flex-col justify-center items-center">
+                  <p>{t("se.rotate")}</p>
+                  <div class="w-8">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                      class="text-[#0E1B4D]"
+                      ><path
+                        d="M142.9 142.9c-17.5 17.5-30.1 38-37.8 59.8c-5.9 16.7-24.2 25.4-40.8 19.5s-25.4-24.2-19.5-40.8C55.6 150.7 73.2 122 97.6 97.6c87.2-87.2 228.3-87.5 315.8-1L455 55c6.9-6.9 17.2-8.9 26.2-5.2s14.8 12.5 14.8 22.2l0 128c0 13.3-10.7 24-24 24l-8.4 0c0 0 0 0 0 0L344 224c-9.7 0-18.5-5.8-22.2-14.8s-1.7-19.3 5.2-26.2l41.1-41.1c-62.6-61.5-163.1-61.2-225.3 1zM16 312c0-13.3 10.7-24 24-24l7.6 0 .7 0L168 288c9.7 0 18.5 5.8 22.2 14.8s1.7 19.3-5.2 26.2l-41.1 41.1c62.6 61.5 163.1 61.2 225.3-1c17.5-17.5 30.1-38 37.8-59.8c5.9-16.7 24.2-25.4 40.8-19.5s25.4 24.2 19.5 40.8c-10.8 30.6-28.4 59.3-52.9 83.8c-87.2 87.2-228.3 87.5-315.8 1L57 457c-6.9 6.9-17.2 8.9-26.2 5.2S16 449.7 16 440l0-119.6 0-.7 0-7.6z"
+                        fill="#0E1B4D"
+                      ></path></svg
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-back absolute inset-x-0 flex flex-col justify-center items-center px-10 hidden h-full z-20">
+              <div class="slider-container relative w-full h-full">
+                <h2 class="ti text-4xl font-semibold">{t('se.back.title')}</h2>
+
+                <div class="slider-slide-gr active leading-none">
+                  <h3 class="tos mt-6 text-xl font-medium">{t('gr.back.stocks')}</h3>
+                  <p class="mt-3">
+                    {t('gr.back.stocks2')}
+                  </p>
+                  <h3 class="tos mt-6 text-xl font-medium">{t('gr.back.currency')}</h3>
+                  <p class="mt-3">
+                    {t('gr.back.currency2')}
+                  </p>
+                </div>
+
+                <div class="slider-slide-gr hidden leading-none">
+                  <h3 class="tos mt-6 text-xl font-medium">{t('gr.back.bonus')}</h3>
+                  <p class="mt-3">
+                    {t('gr.back.bonus2')}
+                  </p>
+                  <h3 class="tos mt-6 text-xl font-medium">{t('gr.back.gold')}</h3>
+                  <p class="mt-3">
+                    {t('gr.back.gold2')}
+                  </p>
+                </div>
+              </div>
+
+              <div class="mb-10">
+                <div
+                  class="slider-controls-gr absolute inset-x-0 bottom-10 flex justify-between items-center px-4">
+                  <button class="prev-slide-gr text-5xl text-[#0E1B4D]">‹</button>
+                  <button class="next-slide-gr text-5xl text-[#0E1B4D]">›</button>
+                </div>
+
+                <div
+                  class="slider-indicators-gr flex justify-center items-center space-x-2 mt-8">
+                  <span class="indicator-gr w-2 h-2 rounded-full bg-gray-300"
+                  ></span>
+                  <span class="indicator-gr w-2 h-2 rounded-full bg-gray-300"
+                  ></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profitability Card -->
+          <div
+            class="bg-[#0E1B4D] py-6 px-4 rounded-3xl flex flex-col items-center text-center">
+            <h2 class="ti text-4xl font-semibold fade-up">
+              {t("profitability")}
+            </h2>
+            <p class="mt-6 fade-up">
+              {t("october")} 2024
+            </p>
+            <p class="ti mt-3 text-3xl fade-up">{t('gr.month')}</p>
+            <p class="mt-3 fade-up">
+              {t("se.annual")}
+            </p>
+            <p class="ti mt-3 text-3xl fade-up">{t('gr.annual2')}</p>
+            <div class="flex justify-center w-full mt-2 fade-up">
+              <GrTable />
+            </div>
+          </div>
+        </div>
+        <div
+          class="ti bg w-full flex text-center justify-center text-white xl:mt-6 text-3xl fade-up">
+          <a href="#contact">
+            {t("investNow")}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+  .main_banner {
+    background-image: url("https://res.cloudinary.com/dsfgyzics/image/upload/v1728338183/GROW_gaf3j6.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  /* 
+  .main_banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+  } */
+
+  @media (max-width: 1024px) and (max-height: 700px) {
+    .pad {
+      font-size: 10px;
+    }
+
+    .ti {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 1025px) and (min-height: 590px) and (max-height: 680px) {
+    .mt-3 {
+      margin-top: 10px;
+      font-size: 15px;
+    }
+
+    .mt-6 {
+      font-size: 15px;
+      margin-top: 15px;
+    }
+
+    .p-2 {
+      padding: 5px;
+    }
+
+    .ti {
+      margin-top: 5px;
+      font-size: 20px;
+    }
+  }
+
+  @media (min-width: 1025px) and (max-height: 590px) {
+    .over {
+      height: 95%;
+      overflow-y: auto;
+    }
+
+    .bg {
+      background: #0e1b4d;
+      opacity: 60%;
+      height: 50px;
+    }
+  }
+
+  @media (min-width: 2000px) and (min-height: 1040px) {
+    .mw {
+      max-width: 1800px;
+      font-size: 18px;
+
+      .ti {
+        font-size: 55px;
+        line-height: 75%;
+      }
+
+      .mt-2 {
+        margin-top: 40px;
+      }
+
+      .mt-3 {
+        margin-top: 30px;
+      }
+
+      .mt-6 {
+        margin-top: 50px;
+      }
+
+      .max {
+        max-width: 400px;
+      }
+
+      .tos {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (min-width: 2050px) and (min-height: 1080px) {
+    .mw {
+      max-width: 2000px;
+      font-size: 20px;
+
+      .ti {
+        font-size: 60px;
+        line-height: 75%;
+      }
+
+      .mt-2 {
+        margin-top: 40px;
+      }
+
+      .mt-3 {
+        margin-top: 30px;
+      }
+
+      .mt-6 {
+        margin-top: 50px;
+      }
+
+      .max {
+        max-width: 400px;
+      }
+
+      .tos {
+        font-size: 25px;
+      }
+    }
+  }
+
+  @media (min-width: 2100px) and (min-height: 1160px) {
+    .mw {
+      max-width: 2000px;
+      font-size: 23px;
+
+      .ti {
+        font-size: 70px;
+        line-height: 75%;
+      }
+
+      .mt-2 {
+        margin-top: 40px;
+      }
+
+      .mt-3 {
+        margin-top: 30px;
+      }
+
+      .mt-6 {
+        margin-top: 50px;
+      }
+
+      .max {
+        max-width: 400px;
+      }
+
+      .tos {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .slider-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slider-slide-gr {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .slider-slide-gr.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .slider-slide-gr.hidden {
+    display: none;
+  }
+
+  .slider-controls-gr button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .slider-indicators-gr .indicator-gr {
+    width: 10px;
+    height: 10px;
+    background-color: #cccccc;
+  }
+
+  .slider-indicators-gr .indicator-gr.active {
+    background-color: #0e1b4d;
+  }
+</style>
+
+<script>
+  document
+    .getElementById("gr-diversification-card")
+    ?.addEventListener("click", function () {
+      this.classList.toggle("rotate");
+
+      const cardBack = this.querySelector(".card-back");
+      cardBack?.classList.toggle("hidden");
+    });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let currentIndex = 0;
+    const slides = document.querySelectorAll(".slider-slide-gr");
+    const indicators = document.querySelectorAll(".indicator-gr");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+        slide.classList.toggle("hidden", i !== index);
+        indicators[i].classList.toggle("active", i === index);
+      });
+    }
+
+    document
+      .querySelector(".next-slide-gr")
+      ?.addEventListener("click", function (event) {
+        event.stopPropagation();
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+      });
+
+    document
+      .querySelector(".prev-slide-gr")
+      ?.addEventListener("click", function (event) {
+        event.stopPropagation();
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+      });
+
+    showSlide(currentIndex);
+  });
+</script>

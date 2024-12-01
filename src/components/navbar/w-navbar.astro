@@ -1,0 +1,261 @@
+---
+import Container from "@components/container.astro";
+import Link from "@components/ui/link.astro";
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import logoImage from "assets/logo.png";
+import { Picture } from "astro:assets";
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+import Dropdown from "./dropdown.astro";
+import Logo2 from "assets/logo2.png";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+
+const menuitems = [
+  {
+    title: "nav.about",
+    path: "/about-us",
+  },
+  {
+    title: "nav.plans",
+    path: "#portfolios-anchor",
+  },
+  {
+    title: "nav.calculator",
+    path: "https://qq-capital-fund---dashboard.web.app/multi-portfolio-calculator",
+  },
+];
+
+function getLocalizedPath(path, lang) {
+  if (path.startsWith('/')) {
+    return lang === 'en' ? path : `/${lang}${path}`;
+  }
+  return path;
+}
+
+function getLocalizedHomePath(lang) {
+  return lang === 'en' ? '/' : `/${lang}/`;
+}
+
+// const currentPath = Astro.url.pathname.replace(/^\/(es|en|fr)\//, "/");
+// console.log(currentPath);
+
+// function putUnderline(path) {
+//   console.log(currentPath);
+//   console.log(path);
+//   return currentPath === path ? 'underline' : '';
+// }
+---
+
+<script>
+  document.querySelectorAll('[data-toggle="modal"]').forEach(button => {
+    button.addEventListener('click', function() {
+      const targetModal = this.getAttribute('data-target');
+      document.getElementById(targetModal)?.classList.toggle('hidden');
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("toggle-dropdown");
+    const closeButton = document.getElementById("close-dropdown");
+    const dropdown = document.getElementById("dropdown-menu");
+
+    if (button && dropdown && closeButton) {
+      // console.log("entra?")
+
+      button.addEventListener("click", () => {
+        dropdown.classList.toggle("hidden");
+      });
+
+      closeButton.addEventListener("click", () => {
+        dropdown.classList.add("hidden");
+      });
+    }
+  });
+</script>
+
+<div>
+  <div id="dropdown-menu" class="hidden border w-full relative">
+    <Dropdown />
+  </div>
+  <header
+    class="navbar relative flex flex-col lg:flex-row justify-between items-center py-6">
+    <Astronav>
+      <div class="flex w-full lg:w-auto items-center justify-between">
+        <a href={getLocalizedHomePath(lang)} class="text-lg">
+          <Picture
+            src={Logo2}
+            alt="Astronaut in the air"
+            widths={[300, 500, 700]}
+            sizes="(max-width: 30px) 30px, 30px"
+            loading="eager"
+            format="avif"
+            class="h-16 w-[70px] lg:w-[85px]"
+          />
+        </a>
+        <div class="block lg:hidden">
+          <MenuIcon class="w-4 h-4 text-white" />
+        </div>
+      </div>
+
+      <!-- Elementos Centrados -->
+      <ul class="hidden lg:flex lg:w-full justify-center items-center gap-8">
+        {
+          menuitems.map((item, index) => (
+            <li>
+              {item.title === "nav.plans" ? (
+                <button
+                  id="toggle-dropdown"
+                  class="flex items-center font-bold text-white hover:bg-blue-700 rounded-full px-5 py-0.5">
+                  <span class="text-sm lg:text-base">
+                    {t(item.title as "nav.plans")}
+                  </span>
+                  <li class="ml-2 fa fa-angle-down"></li>
+                </button>
+              ) : (
+                <a
+                  href={getLocalizedPath(item.path, lang)}
+                  class="flex items-center font-bold text-white hover:bg-blue-700 rounded-full px-5 py-0.5"
+                  data-path={item.path}
+                  style="border: none;">
+                  <p class="text-sm lg:text-base">
+                    {t(item.title as "nav.bot")}
+                  </p>
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+
+      <!-- Botones a la derecha -->
+      <ul class="hidden lg:flex items-center justify-end gap-4">
+        <li>
+          <a
+            href="https://qq-capital-fund---dashboard.web.app/login"
+            class="flex items-center text-white hover:bg-blue-700 rounded-full px-5 py-0.5"
+            style="border: none; white-space: nowrap; text-decoration: none;"
+            target="_blank" data-path="/about-us" rel="noopener noreferrer">
+            <span class="text-sm lg:text-base font-bold">{t('hero.button')}</span>
+          </a>
+        </li>
+        <li>
+          <Link
+            href="#contact"
+            size="md"
+            block
+            class="px-6 py-[12px] border-none font-semibold text-white bg-[#0E1B4D] rounded-3xl whitespace-nowrap"
+            >{t('hero.button2')}</Link
+          >
+        </li>
+      </ul>
+
+      <MenuItems class="hidden lg:hidden w-full flex-col items-center text-[#0E1B4D] mt-20 absolute z-50 p-2 rounded-xl border bg-white">
+        <ul class="flex flex-col items-start gap-4">
+          {
+            menuitems.map((item, index) => (
+              <li>
+                {item.title === "nav.plans" ? (
+                  <button
+                    id="toggle-dropdown"
+                    data-toggle="modal"
+                    data-target="dropdown-menu"
+                    class="flex items-center font-semibold hover:text-gray-900 px-2 py-0.5">
+                    <span class="text-sm lg:text-base">
+                      {t(item.title as "nav.plans")}
+                    </span>
+                  </button>
+                ) : (
+                  <a
+                    href={item.path}
+                    class="flex items-center font-semibold hover:text-gray-900 px-2 py-0.5"
+                    style="border: none;">
+                    <p class="text-sm lg:text-base">
+                      {t(item.title as "nav.bot")}
+                    </p>
+                  </a>
+                )}
+              </li>
+            ))
+          }
+          <li>
+            <a
+              href="https://qq-capital-fund---dashboard.web.app/login"
+              class="flex items-center hover:text-gray-900 px-2 py-0.5"
+              style="border: none;"
+              target="_blank"
+              rel="noopener noreferrer">
+              <span class="text-sm lg:text-base font-semibold">{t('hero.button')}</span>
+            </a>
+          </li>
+          <li>
+            <Link
+              href="#contact"
+              class="px-2 py-[5px] text-white bg-[#0E1B4D] rounded-2xl whitespace-nowrap">
+              {t('hero.button2')}
+            </Link>
+          </li>
+        </ul>
+      </MenuItems>
+    </Astronav>
+  </header>
+</div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;500;600;700&display=swap");
+
+  html {
+    scroll-behavior: smooth;
+    font-family: "Kumbh Sans", sans-serif;
+    overflow-x: hidden;
+  }
+
+  .navbar,
+  .navbar ul li a,
+  #registroButton {
+    font-family: "Kumbh Sans", sans-serif;
+  }
+
+  .dropdown-container.active {
+    display: flex;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  }
+
+  .slide-up {
+    animation: slide-up 0.5s ease-in-out;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let currentPath = window.location.pathname.replace(/^\/(es|en|fr)\//, "/");
+    currentPath = currentPath.endsWith('/') ? currentPath : currentPath + '/';
+    console.log('Current Path:', currentPath);
+
+    const links = document.querySelectorAll('ul li a');
+    links.forEach(link => {
+      const path = link.getAttribute('data-path');
+      const normalizedPath = path?.endsWith('/') ? path : path + '/';
+      if (currentPath === normalizedPath) {
+        link.classList.add('underline');
+        const span = link.querySelector('span');
+        if (span) {
+          span.classList.add('bg-gray-200');
+          span.classList.add('rounded-full');
+          span.classList.add('px-5');
+        }
+        link.classList.remove('hover:bg-gray-200');
+      }
+    });
+  });
+</script>

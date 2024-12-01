@@ -1,0 +1,23 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SerenityHome from "@components/portfolios/detailed-port/serenity/serenity-home.astro";
+import SeDivClauses from "@components/portfolios/detailed-port/serenity/se-div-clauses.astro";
+import Features from "@components/landing/features.astro";
+import SeFeatures from "@components/portfolios/detailed-port/serenity/se-features.astro";
+import SeDiver from "@components/portfolios/detailed-port/serenity/se-diver.astro";
+import Faq from "@components/landing/faq.astro";
+import SeTable from "@components/portfolios/detailed-port/serenity/se-table.astro";
+import Container from "@components/container.astro";
+---
+
+<Layout title="Serenity">
+  <Container>
+    <SerenityHome />
+    <!-- <SeDivClauses />
+    <Features /> -->
+    <SeFeatures />
+    <SeDiver />
+    <SeTable />
+    <Faq />
+  </Container>
+</Layout>

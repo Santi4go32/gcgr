@@ -1,0 +1,9 @@
+---
+import { getLangFromUrl,useTranslation } from "i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+<div class="flex justify-center text-center items-center h-[400px] lg:h-72 xl:h-96 fade-up">
+    <h1 class="text-5xl lg:text-[85px] text-[#0E1B4D] font-bold">{t('ab.footer')}</h1>
+</div>

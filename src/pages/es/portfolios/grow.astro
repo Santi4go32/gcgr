@@ -1,0 +1,23 @@
+---
+import Layout from "@layouts/Layout.astro";
+import GrowHome from "@components/portfolios/detailed-port/grow/grow-home.astro";
+import ClDivClauses from "@components/portfolios/detailed-port/grow/gr-div-clauses.astro";
+import Features from "@components/landing/features.astro";
+import GrFeatures from "@components/portfolios/detailed-port/grow/gr-features.astro";
+import GrDiver from "@components/portfolios/detailed-port/grow/gr-diver.astro";
+import GrTable from "@components/portfolios/detailed-port/grow/gr-table.astro";
+import Faq from "@components/landing/faq.astro";
+import Container from "@components/container.astro";
+---
+
+<Layout title="Grow">
+  <Container>
+    <GrowHome />
+    <!-- <ClDivClauses />
+    <Features /> -->
+    <GrFeatures />
+    <GrDiver />
+    <GrTable />
+    <Faq />
+  </Container>
+</Layout>

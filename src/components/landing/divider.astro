@@ -1,0 +1,24 @@
+---
+import { Picture } from "astro:assets";
+import divider from "assets/divider.png";
+
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+
+<div
+  style="margin-top: 10%"
+  class="w-screen relative justify-center items-center flex w-full left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[400px] lg:h-72 xl:h-96 text-[#0E1B4D]">
+  <Picture
+    src={divider}
+    alt="divider"
+    class="w-full h-full absolute inset-0 object-fill"
+  />
+  <div class="absolute flex flex-col items-center space-y-4 text-center font-bold lg:max-w-screen-xl">
+    <p class="text-xl xl:text-4xl fade-up">{t("div.subtitle")}</p>
+    <h1 class="text-5xl xl:text-[92px] fade-up">{t("div.title")}</h1>
+    <p class="text-xl xl:text-4xl fade-up">{t("div.description")}</p>
+  </div>
+</div>
