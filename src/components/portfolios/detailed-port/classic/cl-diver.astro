@@ -1,0 +1,88 @@
+---
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 text-[#0E1B4D] relative">
+    <div class="order-2 md:order-1 flex flex-col fade-up">
+        <video class="opacity-[0.98]" autoplay loop playsinline controlslist="nodownload" preload="auto" poster="https://qqcapitalfund.com/wp-content/uploads/2024/01/Serenity-Torta-poster.jpg">
+            <source src="https://qqcapitalfund.com/wp-content/uploads/2024/01/Torta-X2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="mb-2">
+            <p class="mb-[60px] mt-[-60px] md:mt-[-120px] md:mb-[100px] relative z-10 w-full flex justify-center md:justify-start p-2">{t('click-each')}</p>
+        </div>
+        <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mt-[-50px] items-center justify-center text-center md:text-start md:justify-start md:mt-[-100px] z-10 text-xl font-semibold fade-up">
+            <!-- Tooltip Element -->
+            <div id="tooltip" class="hidden mb-[210px] absolute bg-white border rounded shadow-lg p-4 z-20 w-full">
+                <p id="tooltip-content" class="text-sm text-[#0E1B4D]"></p>
+                <button id="tooltip-close" class="text-xs text-blue-500 mt-2">{t('close')}</button>
+            </div>
+
+            <!-- Percentage -->
+            <p id="tooltip-stocks" class="whitespace-pre-line cursor-pointer">{t('cl.stocks')}</p>
+            <p id="tooltip-currency" class="whitespace-pre-line text-[#26b5d8] cursor-pointer">{t('cl.currency')}</p>
+            <p id="tooltip-bonus" class="whitespace-pre-line text-[#1a5e83] cursor-pointer">{t('cl.bonus')}</p>
+            <p id="tooltip-gold" class="whitespace-pre-line text-[#032794] cursor-pointer">{t('cl.gold')}</p>
+        </div>
+    </div>
+    <div class="order-1 md:order-2 mt-10 md:mt-0 text-start md:text-end flex justify-center flex-col">
+        <h1 class="text-2xl md:text-3xl font-medium tracking-tight fade-up">{t('se.diversification')}</h1>
+        <p class="mt-5 text-xl fade-up">{t('se.diversification1')}</p>
+        <p class="mt-5 text-xl fade-up">{t('cl.diversification2')}</p>
+        <p class="mt-5 text-xl fade-up">{t('cl.diversification3')}</p>
+    </div>
+</div>
+
+<script>
+    import { useTranslation } from "i18n/utils";
+
+    function getLangFromUrl(pathname) {
+        const segments = pathname.split('/');
+        return segments[1] === "es" ? segments[1] : "en";
+    }
+
+    const lang = getLangFromUrl(window.location.pathname);
+    const t = useTranslation(lang);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const tooltip = document.getElementById("tooltip");
+        const tooltipContent = document.getElementById("tooltip-content");
+        const tooltipClose = document.getElementById("tooltip-close");
+
+        const tooltipsData = {
+            "tooltip-stocks": "cl.back.stocks2",
+            "tooltip-currency": "cl.back.currency2",
+            "tooltip-bonus": "cl.back.bonus2",
+            "tooltip-gold": "cl.back.gold2"
+        };
+
+        // Mostrar el tooltip
+        Object.keys(tooltipsData).forEach(id => {
+            const element = document.getElementById(id);
+            element?.addEventListener("click", () => {
+                if (tooltipContent) {
+                    tooltipContent.textContent = t(tooltipsData[id]);
+                }
+                if (tooltip) {
+                    tooltip.style.display = "block";
+                }
+            });
+        });
+
+        // Cerrar el tooltip
+        tooltipClose?.addEventListener("click", () => {
+            if (tooltip) {
+                tooltip.style.display = "none";
+            }
+        });
+
+        document.addEventListener("click", (e) => {
+            if (tooltip && !tooltip.contains(e.target as Node) && !Object.keys(tooltipsData).some(id => document.getElementById(id)?.contains(e.target as Node))) {
+                tooltip.style.display = "none";
+            }
+        });
+    });
+</script>

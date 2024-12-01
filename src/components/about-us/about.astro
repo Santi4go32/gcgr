@@ -1,0 +1,61 @@
+---
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+import Navbar from "components/navbar/navbar.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+
+<main
+  class="main_banner w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-full">
+  <div class="max-w-screen-xl mx-auto px-5">
+    <Navbar />
+  </div>
+  <div class="flex justify-center">
+    <div class="absolute flex w-full max-w-screen-xl pad xl:py-10 py-20">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 text-[#0E1B4D] gap-6 w-full">
+        <div class="marb flex flex-col w-full w-full mt-[10px] lg:mt-0 xl:mb-20 px-5 justify-center h-full">
+
+          <!-- Misión -->
+          <div class="fade-up">
+            <h1 class="text-6xl md:text-7xl md:mt-10 font-bold tracking-tight">
+              {t("ab.mission")}
+            </h1>
+            <p class="text-base mt-3">{t("ab.mission1")}</p>
+          </div>
+
+          <!-- Visión -->
+          <div class="fade-up">
+            <h1 class="text-6xl md:text-7xl mt-10 font-bold">{t("ab.vision")}</h1>
+            <p class="text-base mt-3">{t("ab.vision1")}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+  .main_banner {
+    background-image: url("https://res.cloudinary.com/dsfgyzics/image/upload/v1729030660/About_qszhsa.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+
+  @media (max-width: 400px) and (max-height: 800px) {
+    .pad {
+        padding-top: 10px;
+    }
+
+  }
+
+  @media (min-width: 1025px) and (min-height: 550px) and (max-height: 640px) {
+    .marb {
+      margin-bottom: 0;
+      margin-top: -55px;
+    }
+  }
+</style>

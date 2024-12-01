@@ -1,0 +1,23 @@
+---
+import Layout from "@layouts/Layout.astro";
+import ClassicHome from "@components/portfolios/detailed-port/classic/classic-home.astro";
+import ClDivClauses from "@components/portfolios/detailed-port/classic/cl-div-clauses.astro";
+import Features from "@components/landing/features.astro";
+import ClFeatures from "@components/portfolios/detailed-port/classic/cl-features.astro";
+import ClDiver from "@components/portfolios/detailed-port/classic/cl-diver.astro";
+import ClTable from "@components/portfolios/detailed-port/classic/cl-table.astro";
+import Faq from "@components/landing/faq.astro";
+import Container from "@components/container.astro";
+---
+
+<Layout title="Classic">
+  <Container>
+    <ClassicHome />
+    <!-- <ClDivClauses />
+    <Features /> -->
+    <ClFeatures />
+    <ClDiver />
+    <ClTable />
+    <Faq />
+  </Container>
+</Layout>

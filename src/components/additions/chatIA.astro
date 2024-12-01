@@ -1,0 +1,239 @@
+---
+import { languages } from "i18n/ui";
+import { getLangFromUrl,useTranslation } from "i18n/utils";
+import Link from "@components/ui/link.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+
+const imageUrl = lang === 'en' ? 'https://res.cloudinary.com/dm6kc0kyr/image/upload/v1725987254/INGLES_1_pacugc.gif'
+                               : 'https://res.cloudinary.com/dm6kc0kyr/image/upload/v1725916349/12348609-6f5d-4e19-aff0-550931dd8802_psxdmz.gif';
+
+const otherLang = Object.keys(languages).find(l => l !== lang);
+
+function getOtherLangUrl(currentUrl, currentLang, otherLang) {
+  if (currentLang === 'en') {
+    return `/${otherLang}${currentUrl}`;
+  } else {
+    return currentUrl.replace(`/${currentLang}`, otherLang === 'en' ? '' : `/${otherLang}`);
+  }
+}
+
+const otherLangUrl = getOtherLangUrl(Astro.url.pathname, lang, otherLang);
+---
+
+
+<div class="fixed bottom-0 right-0 lg:right-[0.3vw] z-50 flex justify-end w-20">
+    <a href="#" id="open-modal" class="w-18 h-20">
+        <img src={imageUrl} alt="Descripción de la imagen" class="w-full h-full object-contain max-w-full max-h-full">
+    </a>
+</div>
+
+<div id="modal-1" class="glass border-2 border-gray modal w-6 h-4 rounded"></div>
+<div id="modal-2" class="glass border-2 border-gray modal w-16 h-12 rounded-lg"></div>
+<div id="modal-3" class="glass border-2 border-gray modal w-48 h-32 rounded-xl"></div>
+<div id="modal-4" class="glass border-4 border-gray modal w-64 h-40 rounded-2xl"></div>
+<div id="modal-5" class="glass border-4 border-gray modal w-80 h-60 rounded-3xl"></div>
+<div id="modal-6" class="glass modal border-4 border-gray w-auto h-[100px] overflow md:w-[500px] lg:w-[730px] lg:h-auto rounded p-6 text-[#111c50] flex flex-col items-center justify-center relative">
+    <button id="close-modal" class="absolute top-4 right-4 bg-[#111c50] text-white rounded-full p-2 hover:bg-gray-600">
+        ×
+    </button>
+    <h1 class="text-4xl font-[500] mb-8">{t('virtual.title')}</h1>
+    <p class="text-xl mb-8">{t('virtual.subtitle')}</p>
+    <p class="text-xl font-500-stroke mb-8">{t('virtual.subtitle2')}</p>
+    <p class="text-xl mb-8">{t('virtual.description')}<span class="italic font-500-stroke">{t('virtual.description2')}</span>{t('virtual.description3')}</p>
+    <Link
+        href="https://chat-ia-fund.vercel.app/"
+        rel="noopener noreferrer"
+        size="md"
+        block
+        target="_blank"
+        class="px-6 py-[12px] border-none font-semibold text-white bg-[#0E1B4D] rounded-3xl whitespace-nowrap">{t('virtual.button')}
+    </Link>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+.font-500-stroke {
+    font-weight: 500;
+    -webkit-text-stroke: 0.3px #111c50;
+}
+
+.fixed-bottom-right {
+    position: fixed;
+    bottom: 0;
+    right: 0.3rem;
+    z-index: 50;
+}
+
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.glass {
+    backdrop-filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(0.4) translate(-50%, -50%);
+    }
+    30% {
+        transform: scale(1.2) translate(-50%, -50%);
+    }
+    60% {
+        transform: scale(0.9) translate(-50%, -50%);
+    }
+    100% {
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+.modal {
+    font-family: 'Montserrat', sans-serif;
+    z-index: 10;
+    display: none;
+    position: fixed;
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.modal.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+
+#modal-1 {
+    bottom: 50px;
+    right: 80px;
+    transform: translate(0, 0);
+}
+
+#modal-2 {
+    bottom: 6%;
+    right: 5%;
+    transform: translate(-10%, -10%);
+}
+
+#modal-3 {
+    bottom: 7%;
+    right: 7%;
+    transform: translate(-20%, -20%);
+}
+
+#modal-4 {
+    bottom: 10%;
+    right: 10%;
+    transform: translate(-30%, -30%);
+}
+
+#modal-5 {
+    bottom: 10%;
+    right: 20%;
+    transform: translate(-40%, -40%);
+}
+
+#modal-6 {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: bounce 0.5s ease-out;
+}
+
+@media (max-width: 1024px) {
+    #modal-6 {
+        transform: translate(-50%, -50%);
+        width: 90%;
+        height: auto;
+        max-width: 95%;
+        max-height: 90%;
+    }
+}
+
+@media (max-width: 640px) {
+     {
+      bottom: 0;
+    }
+  }
+
+#close-modal {
+    font-size: 1.5rem;
+    line-height: 1;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#close-modal:hover {
+    background-color: #143c74;
+}
+</style>
+
+<script>
+    const openModal = document.getElementById('open-modal');
+    const closeModal = document.getElementById('close-modal');
+    const modals = [
+        document.getElementById('modal-1'),
+        document.getElementById('modal-2'),
+        document.getElementById('modal-3'),
+        document.getElementById('modal-4'),
+        document.getElementById('modal-5'),
+        document.getElementById('modal-6')
+    ];
+    
+    openModal?.addEventListener('click', function(event) {
+        event.preventDefault();
+    
+        let delay = 0;
+        modals.forEach((modal, index) => {
+            setTimeout(() => {
+                modal?.classList.add('active');
+            }, delay);
+    
+            if (index > 0 && index < modals.length - 1) {
+                setTimeout(() => {
+                    modals[index - 1]?.classList.remove('active');
+                }, delay - 10);
+            }
+    
+            delay += 30;
+        });
+    
+        setTimeout(() => {
+            modals.slice(0, -1).forEach(modal => modal?.classList.remove('active'));
+        }, delay + 20);
+    });
+    
+    closeModal?.addEventListener('click', function() {
+        let delay = 0;
+        const lastIndex = modals.length - 1;
+    
+        modals[lastIndex]?.classList.remove('active');
+    
+        modals.slice(0, lastIndex).reverse().forEach((modal, index) => {
+            setTimeout(() => {
+                modal?.classList.add('active');
+            }, delay);
+    
+            if (index > 0) {
+                setTimeout(() => {
+                    modals[lastIndex - index]?.classList.remove('active');
+                }, delay - 10);
+            }
+    
+            delay += 30;
+        });
+    
+        setTimeout(() => {
+            modals[0]?.classList.remove('active');
+        }, delay + 20);
+    });
+</script>
+    

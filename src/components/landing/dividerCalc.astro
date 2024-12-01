@@ -1,0 +1,35 @@
+---
+import { Picture } from "astro:assets";
+import divider from "assets/divider.png";
+import Mac from "assets/mac.png";
+
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+
+<div
+  class="mt-[10%] mb-[10%] w-screen relative justify-center items-center flex w-full left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[400px] lg:h-72 xl:h-96 text-[#0E1B4D]">
+  <Picture
+    src={divider}
+    alt="divider"
+    class="w-full h-full absolute inset-0 object-fill"
+  />
+  
+  <div class="absolute flex flex-col items-center lg:items-start space-y-4 text-center lg:text-left w-full lg:max-w-screen-xl lg:pr-[500px] xl:pr-[545px] px-5">
+    <p class="xl:text-2xl fade-up">{t("div2.subtitle")}</p>
+    <h1 class="text-4xl xl:text-6xl font-bold fade-up">{t("div2.subtitle2")}</h1>
+    <p class="text-5xl xl:text-7xl font-bold fade-up">{t("div2.title")}</p>
+    <p class="xl:text-2xl fade-up">{t("div2.description")}</p>
+  </div>
+
+  <div class="absolute right-0 top-0 h-full w-auto hidden lg:flex items-center fade-up">
+    <Picture
+      src={Mac}
+      alt="mac"
+      loading="eager"
+      class="lg:w-[500px] xl:w-[700px] h-full object-cover"
+    />
+  </div>
+</div>

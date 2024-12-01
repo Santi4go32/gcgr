@@ -1,0 +1,23 @@
+---
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+
+<div class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-[#0b1c52] h-auto flex items-center justify-center md:flex">
+  <div class="relative flex w-full lg:max-w-screen-xl h-full text-white">
+    <div
+      class="relative flex-grow py-8 md:py-20 rounded-lg flex flex-col items-center justify-center">
+      <a href="/portfolios/grow" target="_blank" class="absolute text-4xl md:text-8xl font-semibold w-full h-full text-center justify-center items-center flex flex-col fade-up">
+        <p class="text-sm p-0 md:text-xl h-auto">
+          {t('click-here')}
+        </p>
+        <p>
+          {t("gr.title")}
+        </p>
+      </a>
+      <!-- <img src="https://i0.wp.com/qqcapitalfund.com/wp-content/uploads/2024/01/Aro-Clausulas.png?fit=810%2C370&ssl=1" alt="clausulas" class="w-auto h-32" /> -->
+    </div>
+  </div>
+</div>

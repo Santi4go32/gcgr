@@ -1,0 +1,77 @@
+---
+import { getLangFromUrl, useTranslation } from "i18n/utils";
+import { Picture } from "astro:assets";
+import tel from "assets/tel.png";
+import Link from "@components/ui/link.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+---
+
+<div
+  style="margin-top: 10%"
+  class="w-screen bg-[#0E1B4D] relative justify-center items-center flex w-full left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] lg:h-96">
+  <div
+    class="w-screen relative h-auto flex flex-col lg:flex-row items-center lg:justify-start justify-center max-w-screen-xl mx-auto">
+    <!-- Contenedor del contenido (Título) -->
+    <div
+      class="relative flex flex-col items-center lg:items-start justify-center text-white text-center lg:text-left w-full lg:w-auto h-auto p-5">
+      <div
+        class="w-full flex justify-center lg:justify-start text-3xl md:text-7xl font-bold">
+        <div class="whitespace-normal fade-up">
+          <span class="whitespace-nowrap">{t("proj.title")}</span>
+          <br />
+          <span class="whitespace-nowrap">{t("proj.title2")}</span>
+        </div>
+      </div>
+      <div class="flex justify-center lg:justify-start mt-10 fade-up">
+        <Link
+          size="lg"
+          rel="noopener noreferrer"
+          href="https://qq-capital-fund---dashboard.web.app/multi-portfolio-calculator"
+          class="inline-flex hover:text-white gap-1 bg-white items-center font-semibold justify-center rounded-full lg:w-[210px] py-0.1 text-black border border-black"
+          target="_blank">
+          {t("proj.button")}
+        </Link>
+      </div>
+    </div>
+
+    <!-- Cuadro -->
+    <div
+      class="w-full flex items-center justify-center h-[500px] lg:px-5 fade-up">
+      <div
+        class="w-full h-full lg:h-full bg-white lg:rounded-3xl floating-button">
+        <iframe
+          src="https://qq-capital-fund---dashboard.web.app/inner-multi-portfolio-calculator"
+          class="w-full h-full lg:rounded-3xl"
+          title="Multiple Portfolio Calculator"
+          style="border:none; overflow:auto;">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .floating-button {
+    box-shadow: 0 8px 15px -4px rgb(0, 0, 0);
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+  }
+
+  @media (min-width: 280px) and (max-width: 1024px) {
+    .floating-button {
+      box-shadow: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .lg\\:w-[600px] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  }
+</style>
