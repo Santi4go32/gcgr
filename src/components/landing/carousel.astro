@@ -29,16 +29,22 @@ const items = [
 ---
 
 <div class="carousel-container bg rounded mt-5 mb-5">
-  <div class="carousel-track space-x-4">
-    {items.concat(items).map((item, index) => (
-      <div class="carousel-item flex flex-row border-gradient p-4">
-        <img src={item.image} alt={item.title} class="h-[300px] w-[300px] rounded-full object-cover" />
-        <div class="flex flex-col justify-center text-center">
-            <h1 class="text-4xl text-[#ffca00]">{item.title}</h1>
+  <div class="carousel-track space-x-2 lg:space-x-4">
+    {
+      items.concat(items).map((item, index) => (
+        <div class="carousel-item flex flex-col lg:flex-row border-gradient p-4 lg:p-8">
+          <img
+            src={item.image}
+            alt={item.title}
+            class="h-[150px] w-[150px] xl:h-[200px] xl:w-[200px] rounded-full object-cover"
+          />
+          <div class="flex flex-col justify-center text-center">
+            <h1 class="text-xl xl:text-4xl text-[#ffca00]">{item.title}</h1>
             {/* <p class="text-xl">{item.description}</p> */}
+          </div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </div>
 
@@ -80,15 +86,24 @@ const items = [
   .carousel-item {
     flex-shrink: 0;
     width: 20%;
-    padding: 0 10px;
+    /* padding: 0 10px; */
   }
 
   .carousel-item img {
-    width: 50%;
+    /* width: 50%; */
     height: auto;
     display: block;
   }
 
+  @media (max-width: 768px) {
+    .border-gradient {
+      border-radius: 50px;
+    }
+
+    .border-gradient::before {
+      padding: 3px;
+    }
+  }
 
   @keyframes scroll {
     0% {
