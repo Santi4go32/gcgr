@@ -50,7 +50,7 @@ const sales = [
       </h1>
       {
         sales.map((sale) => (
-          <div class="fade-up relative flex flex-col lg:flex-row items-center mt-5 lg:gap-4 p-2 lg:p-4 xl:p-10 rounded-[60px] border-gradient w-[300px] lg:w-[600px]">
+          <div class="fade-up relative flex flex-col lg:flex-row items-center mt-5 lg:gap-4 p-2 lg:p-4 xl:p-10 rounded-[60px] border-gradient w-[250px] lg:w-[600px]">
             <img
               src={sale.image}
               alt={sale.title}
@@ -159,6 +159,7 @@ const sales = [
   }
 
   @media (min-width: 530px) and (max-height: 940px) {
+    
     .h {
       height: 100vh;
     }
@@ -169,24 +170,13 @@ const sales = [
   }
 
   @media (min-width: 401px) and (max-width: 529px) and (max-height: 940px) {
-    .h {
-      height: 70vh;
-    }
-
-    .hh {
-      height: 240vh;
-    }
-  }
-
-  @media (max-width: 400px) and (max-height: 680px) {
     .font {
       font-size: 1.5rem;
     }
 
-    .border-gradient::before {
-      padding: 4px;
+    .font-price {
+        font-size: 3rem;
     }
-
     .h {
       height: 90vh;
     }
@@ -196,13 +186,42 @@ const sales = [
     }
   }
 
-  @media (max-width: 400px) and (min-height: 690px) and (max-height: 845px) {
+  @media (max-width: 400px) and (max-height: 680px) {
+    .font {
+      font-size: 1.5rem;
+    }
+
+    .font-price {
+        font-size: 2rem;
+    }
+
+    .border-gradient::before {
+      padding: 2px;
+    }
+
+    .p-2 {
+        padding: 1px;
+    }
+
+    .h {
+      height: 100vh;
+    }
+
+    .hh {
+      height: 300vh;
+    }
+  }
+
+  @media (max-width: 400px) and (min-height: 690px) and (max-height: 855px) {
+    .font {
+      font-size: 1.5rem;
+    }
     .h {
       height: 80vh;
     }
 
     .hh {
-      height: 260vh;
+      height: 265vh;
     }
   }
 
